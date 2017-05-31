@@ -23,7 +23,7 @@ cd service-catalog
 Next, use Helm to install it:
 
 ```console
-helm install charts/catalog --name catalog --namespace catalog --set apiserver.service.type=LoadBalancer
+helm install charts/catalog --name catalog --namespace catalog --set apiserver.service.type=LoadBalancer,apiserver.storage.type=tpr
 ```
 
 (notice the `apiserver.service.type=LoadBalancer`. I am doing this so that the `Service` for the service-catalog API server gets a public IP on the ACS cluster)
