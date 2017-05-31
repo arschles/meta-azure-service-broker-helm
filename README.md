@@ -80,6 +80,18 @@ $ export CLIENT_SECRET=<password>
 
 # Install the Meta Azure Service Broker
 
-This content is copied from https://gist.github.com/krancour/98a3e4a1e1000b7dbe0373f223706b68#install-the-meta-azure-service-broker
+There are helm charts in this repository for the 
+[Azure meta service broker](https://github.com/Azure/meta-azure-service-broker). To install it,
+simply run the following command:
 
-There is a helm chart for the Azure meta service broker in a [pull request](https://github.com/kubernetes/charts/pull/1087), so we'll need to pull down the branch that the PR compares against to install the helm chart.
+```console
+helm install charts/meta-azure-service-broker \
+    --name masb \
+    --namespace masb \
+    --set azure.subscriptionId=$SUB_ID,azure.tenantId=$TENANT_ID,azure.clientId=$CLIENT_ID,azure.clientSecret=$CLIENT_SECRET,sql-server.acceptLicense=true
+```
+
+This command starts up a pod running SQL Server and a pod running the Azure service broker. SQL 
+server takes a few minutes to start up completely, and the broker contains an init container
+that waits for it to be available, so the complete system will take some time to be completely
+available.
