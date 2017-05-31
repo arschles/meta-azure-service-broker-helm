@@ -5,8 +5,6 @@ This repository contains charts and instructions for a demo of
 with the 
 [Azure Meta Service Broker](https://github.com/Azure/meta-azure-service-broker)
 
-# Demo Instructions
-
 # Prereqs
 
 - Start a cluster as normal
