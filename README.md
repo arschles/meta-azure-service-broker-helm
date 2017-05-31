@@ -97,7 +97,7 @@ Run the `az provider show -n Microsoft.Cache` command until you see
 
 There are helm charts in this repository for the 
 [Azure meta service broker](https://github.com/Azure/meta-azure-service-broker). To install it,
-simply run the following command:
+simply run the following command from the root of this repository:
 
 ```console
 helm install charts/meta-azure-service-broker \
