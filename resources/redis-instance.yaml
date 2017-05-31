@@ -1,0 +1,18 @@
+apiVersion: servicecatalog.k8s.io/v1alpha1
+kind: Instance
+metadata:
+  name: awesomeredis
+  namespace: my-redis
+spec:
+  serviceClassName: azure-rediscache
+  planName: basic
+  parameters:
+    resourceGroup: my-redis
+    cacheName: awesomeredis # must be globally unique
+    parameters:
+      location: eastus
+      enableNonSslPort: true
+      sku:
+        name: Basic
+        family: C
+        capacity: 0

@@ -110,3 +110,50 @@ To create this `Broker` resource, run the following `kubectl` command:
 kubectl --context service-catalog create -f resources/masb-broker.yaml
 ```
 
+# View Service Classes
+
+After the `Broker` is submitted, Service Catalog will fetch all of the services and plans
+that the Azure meta service broker provides. It will then convert these services and plans
+into `ServiceClass` resources in Kubernetes and store them. After they're stored, they are in the 
+catalog of services.
+
+This entire process happens automatically, so a few seconds after you create the `Broker`, the
+catalog will be populated. Run the following command after you create the `Broker` to see the 
+catalog:
+
+```console
+kubectl --context=service-catalog get serviceclass
+```
+
+You should output similar to the following:
+
+```console
+NAME               KIND
+azure-documentdb   ServiceClass.v1alpha1.servicecatalog.k8s.io
+azure-rediscache   ServiceClass.v1alpha1.servicecatalog.k8s.io
+azure-servicebus   ServiceClass.v1alpha1.servicecatalog.k8s.io
+azure-sqldb        ServiceClass.v1alpha1.servicecatalog.k8s.io
+azure-storage      ServiceClass.v1alpha1.servicecatalog.k8s.io
+```
+
+# Provision a New Service
+
+After `ServieClass`es are listed in the catalog, you can provision instances of them. Conveniently,
+you submit an `Instance` resource to the Service Catalog API server in order to provision a service.
+
+Unlike `Broker`s and `ServiceClass`es above, `Instance`s are namespaced, so we'll have to create
+a new Kubernetes namespace for them. Do so with this command:
+
+```console
+kubectl create ns my-redis
+```
+
+After you've created the namespace, you can create the `Instance`. This repository has a 
+`redis-instance.yaml` file in the `resources/` directory that represents an `Instance` to provision
+a Redis server via [Azure's Redis Cache service](https://azure.microsoft.com/en-us/services/cache/).
+
+To provision, simply run this command:
+
+```console
+kubectl --context=service-catalog create -f resources/redis-instance.yaml
+```
