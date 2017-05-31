@@ -120,14 +120,16 @@ available.
 Service Catalog looks for `Broker` resources in Kubernetes to point it to a new broker server. After
 it sees one, it makes a request to the broker server to fetch its catalog. This repository has a
 `masb-broker.yaml` file in the `resources/` directory that specifies the `Broker` for the Azure 
-broker we just started in the cluster (note that the broker just needs to be accessible over
-HTTP. It doesn't need to be created in the cluster.)
+broker we just started in the cluster.
 
 To create this `Broker` resource, run the following `kubectl` command:
 
 ```console
 kubectl --context service-catalog create -f resources/masb-broker.yaml
 ```
+
+(Note: we are running our broker in the same cluster as the service-catalog, but in general, 
+brokers can run anywhere as long as they're accessible over HTTP)
 
 # View Service Classes
 
