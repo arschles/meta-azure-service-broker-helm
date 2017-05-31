@@ -78,6 +78,21 @@ $ export CLIENT_ID=<appId>
 $ export CLIENT_SECRET=<password>
 ```
 
+Finally, register the subscription to use the Redis service:
+
+```console
+az provider register -n Microsoft.Cache
+```
+
+After that runs, you'll see the following output:
+
+```console
+Registering is still on-going. You can monitor using 'az provider show -n Microsoft.Cache'
+```
+
+Run the `az provider show -n Microsoft.Cache` command until you see 
+`registrationState: "Registered"` in the output.
+
 # Install the Meta Azure Service Broker
 
 There are helm charts in this repository for the 
