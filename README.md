@@ -38,7 +38,7 @@ export SVC_CAT_API_SERVER_IP=<EXTERNAL-IP>
 Next, set up a `kubectl` context to communicate with the service-catalog API server:
 
 ```console
-kubectl config set-cluster service-catalog --server=http://$SVC_CAT_API_SERVER_IP:30080
+kubectl config set-cluster service-catalog --server=http://$SVC_CAT_API_SERVER_IP:80
 kubectl config set-context service-catalog --cluster=service-catalog
 ```
 
