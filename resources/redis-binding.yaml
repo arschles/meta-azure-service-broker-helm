@@ -1,0 +1,9 @@
+apiVersion: servicecatalog.k8s.io/v1alpha1
+kind: Binding
+metadata:
+  name: coreos-redis
+  namespace: my-redis
+spec:
+  instanceRef:
+    name: coreos-redis
+  secretName: coreos-redis-creds

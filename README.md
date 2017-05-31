@@ -171,8 +171,48 @@ After you've created the namespace, you can create the `Instance`. This reposito
 `redis-instance.yaml` file in the `resources/` directory that represents an `Instance` to provision
 a Redis server via [Azure's Redis Cache service](https://azure.microsoft.com/en-us/services/cache/).
 
-To provision, simply run this command:
+To provision, create an `Instance` with this command:
 
 ```console
 kubectl --context=service-catalog create -f resources/redis-instance.yaml
 ```
+
+Next, view the newly created `Instance` with this command:
+
+```console
+kubectl get instance --context=service-catalog -o yaml -n my-redis coreos-redis
+```
+
+A large amount of YAML will be output, but the important bits are under the
+`status.conditions[0]` field (near the bottom). Since the Azure redis service takes a few minutes
+to create new caches, the Azure broker provisions them asynchronously. As a result, you'll see
+the following under the first condition:
+
+```yaml
+message: The instance is being provisioned asynchronously
+reason: Provisioning
+status: "False"
+type: Ready
+```
+
+Wait until the `reason` field reads `ProvisionedSuccessfully` and the `status` field
+reads `"True"` before moving on to the next step.
+
+# Bind to the new Instance
+
+Our last step is to bind to the instance. In doing so, service-catalog will get back some
+credentials that it will write into a `Secret`. All we have to do is run the following command:
+
+```console
+kubectl --context=service-catalog create -f resources/redis-binding.yaml
+```
+
+This command will create a `Secret` called `coreos-redis-creds` in the same (`my-redis`) namespace.
+To see it, run this command:
+
+```console
+kubectl get secret -n my-redis
+```
+
+After this secret is created, our application can use its contents to access its newly provisioned
+redis instance.
