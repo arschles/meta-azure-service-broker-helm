@@ -47,7 +47,11 @@ kubectl config set-context service-catalog --cluster=service-catalog
 
 This content is copied from https://gist.github.com/krancour/98a3e4a1e1000b7dbe0373f223706b68#create-a-service-principal
 
-It is necessary to create a service principal (this is ActiveDirectory speak for "service account") having adequate permission to provision services into your Azure subscription.
+It is necessary to create a service principal (this is ActiveDirectory speak for "service account") 
+having adequate permission to provision services into your Azure subscription.
+
+Get the subscription ID by running `az account list` and selecting the `"id"` field from the 
+account that you'd like to use for this demo.
 
 ```console
 export SUB_ID=<subscriptionId>
