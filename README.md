@@ -107,7 +107,7 @@ simply run the following command from the root of this repository:
 helm install charts/meta-azure-service-broker \
     --name masb \
     --namespace masb \
-    --set azure.subscriptionId=$SUB_ID,azure.tenantId=$TENANT_ID,azure.clientId=$CLIENT_ID,azure.clientSecret=$CLIENT_SECRET,sql-server.acceptLicense=true
+    --set azure.subscriptionId=$SUB_ID,azure.tenantId=$TENANT_ID,azure.clientId=$CLIENT_ID,azure.clientSecret=$CLIENT_SECRET,sql-server.acceptLicense=true,sql-server.persistence.enabled=false
 ```
 
 This command starts up a pod running SQL Server and a pod running the Azure service broker. SQL 
