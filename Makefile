@@ -13,6 +13,10 @@ get-instance:
 create-binding:
 	kubectl --context=service-catalog create -f resources/redis-binding.yaml
 get-binding:
-	kubectl --context=service-catalog get binding coreos-redis -o yaml
+	kubectl --context=service-catalog get binding coreos-redis -o yaml -n my-redis
 get-secret:
 	kubectl get secret coreos-redis-creds
+cleanup:
+	kubectl delete --context=service-catalog binding coreos-redis -n my-redis || \
+	kubectl delete --context=service-catalog instance coreos-redis -n my-redis || \
+	kubectl delete --context=service-catalog broker masb
