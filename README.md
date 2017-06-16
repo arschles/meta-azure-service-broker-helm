@@ -183,7 +183,7 @@ kubectl --context=service-catalog create -f resources/redis-instance.yaml
 Next, view the newly created `Instance` with this command:
 
 ```console
-kubectl get instance --context=service-catalog -o yaml -n my-redis my-redis
+kubectl get instance --context=service-catalog -o yaml -n testing my-redis
 ```
 
 A large amount of YAML will be output, but the important bits are under the
