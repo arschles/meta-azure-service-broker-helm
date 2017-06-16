@@ -1,9 +1,9 @@
 replicaCount: 1
 image:
   ## Image location, NOT including the tag
-  repository: microsoft/meta-azure-service-broker
+  repository: quay.io/krancour/meta-azure-service-broker
   ## Image tag
-  tag: 474bdfb
+  tag: postgres
   ## "IfNotPresent", "Always", or "Never"
   pullPolicy: Always
 service:
