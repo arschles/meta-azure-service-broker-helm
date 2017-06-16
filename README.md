@@ -149,12 +149,13 @@ kubectl --context=service-catalog get serviceclass
 You should output similar to the following:
 
 ```console
-NAME               KIND
-azure-documentdb   ServiceClass.v1alpha1.servicecatalog.k8s.io
-azure-rediscache   ServiceClass.v1alpha1.servicecatalog.k8s.io
-azure-servicebus   ServiceClass.v1alpha1.servicecatalog.k8s.io
-azure-sqldb        ServiceClass.v1alpha1.servicecatalog.k8s.io
-azure-storage      ServiceClass.v1alpha1.servicecatalog.k8s.io
+NAME               KIND                                          BINDABLE   BROKER NAME   DESCRIPTION
+azure-documentdb   ServiceClass.v1alpha1.servicecatalog.k8s.io   true       masb          Azure DocumentDb Service
+azure-postgresqldb   ServiceClass.v1alpha1.servicecatalog.k8s.io   3 item(s)   true      masb
+azure-rediscache   ServiceClass.v1alpha1.servicecatalog.k8s.io   true      masb      Azure Redis Cache Service
+azure-servicebus   ServiceClass.v1alpha1.servicecatalog.k8s.io   2 item(s)   true      masb
+azure-sqldb   ServiceClass.v1alpha1.servicecatalog.k8s.io   true      masb      Azure SQL Database Service
+azure-storage   ServiceClass.v1alpha1.servicecatalog.k8s.io   2 item(s)   true      masb
 ```
 
 # Provision a New Service
