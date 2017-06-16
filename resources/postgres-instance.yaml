@@ -1,0 +1,21 @@
+apiVersion: servicecatalog.k8s.io/v1alpha1
+kind: Instance
+metadata:
+  name: my-postgres
+  namespace: testing
+spec:
+  serviceClassName: azure-postgresqldb
+  planName: basic50
+  parameters:
+    resourceGroup: SOUTHCENTRAL
+    location: eastus
+    postgresqlServerName: postgres-test
+    postgresqlServerParameters:
+      properties:
+        administratorLogin: postgres
+        administratorLoginPassword: F00Bar!!
+      allowPostgresqlServerFirewallRules:
+      - ruleName: AllowAllIps
+        startIpAddress: 0.0.0.0
+        endIpAddress: 255.255.255.255
+    postgresqldbName: my_db

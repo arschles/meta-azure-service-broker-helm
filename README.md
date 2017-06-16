@@ -166,7 +166,7 @@ Unlike `Broker`s and `ServiceClass`es above, `Instance`s are namespaced, so we'l
 a new Kubernetes namespace for them. Do so with this command:
 
 ```console
-kubectl create ns my-redis
+kubectl create ns testing
 ```
 
 After you've created the namespace, you can create the `Instance`. This repository has a 
@@ -182,7 +182,7 @@ kubectl --context=service-catalog create -f resources/redis-instance.yaml
 Next, view the newly created `Instance` with this command:
 
 ```console
-kubectl get instance --context=service-catalog -o yaml -n my-redis coreos-redis
+kubectl get instance --context=service-catalog -o yaml -n my-redis my-redis
 ```
 
 A large amount of YAML will be output, but the important bits are under the
@@ -209,7 +209,7 @@ credentials that it will write into a `Secret`. All we have to do is run the fol
 kubectl --context=service-catalog create -f resources/redis-binding.yaml
 ```
 
-This command will create a `Secret` called `coreos-redis-creds` in the same (`my-redis`) namespace.
+This command will create a `Secret` called `my-redis-creds` in the same (`my-redis`) namespace.
 To see it, run this command:
 
 ```console
