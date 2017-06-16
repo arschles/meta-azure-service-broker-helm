@@ -5,7 +5,7 @@ image:
   ## Image tag
   tag: 474bdfb
   ## "IfNotPresent", "Always", or "Never"
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 service:
   ## Type of service; valid values are "ClusterIP", LoadBalancer", and
   ## "NodePort". "ClusterIP" is sufficient in the average case where a service
