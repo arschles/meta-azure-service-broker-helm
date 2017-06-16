@@ -86,6 +86,7 @@ Finally, register the subscription to use the Redis service:
 
 ```console
 az provider register -n Microsoft.Cache
+az provider register -n Microsoft.DBforPostgreSQL
 ```
 
 After that runs, you'll see the following output:
@@ -94,8 +95,12 @@ After that runs, you'll see the following output:
 Registering is still on-going. You can monitor using 'az provider show -n Microsoft.Cache'
 ```
 
-Run the `az provider show -n Microsoft.Cache` command until you see 
-`registrationState: "Registered"` in the output.
+Run the following commands until you see `registrationState: "Registered"` under both:
+
+```console
+az provider show -n Microsoft.Cache -o table
+az provider show -n Microsoft.DBforPostgreSQL -o table
+```
 
 # Install the Meta Azure Service Broker
 
