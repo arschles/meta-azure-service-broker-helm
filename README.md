@@ -3,12 +3,20 @@
 This repository contains charts and instructions for a demo of 
 [service-catalog](https://github.com/kubernetes-incubator/service-catalog)
 with the 
-[Azure Meta Service Broker](https://github.com/Azure/meta-azure-service-broker)
+[Azure Meta Service Broker](https://github.com/Azure/meta-azure-service-broker).
+
+It currently shows how to install and set up Service Catalog and the Azure broker, and how
+to provision and bind to [Azure Redis](https://azure.microsoft.com/en-us/services/cache/)
+and [Azure Postgres](https://azure.microsoft.com/en-us/services/postgresql/) services.
+
+Note that the instructions herein don't necessarily reflect a production-quality installation, but
+they should get you started down that path.
 
 # Prereqs
 
 - Start a cluster as normal
-- Make sure you are using Helm v2.4.2 or newer. These charts utilize a brand new Helm feature.
+- Make sure you are using Helm v2.4.2 or newer. These charts utilize a feature that's only available
+as of that version
 - Initialize Helm/Tiller as normal (helm init)
 
 # Installing Service-Catalog
@@ -175,26 +183,29 @@ a new Kubernetes namespace for them. Do so with this command:
 kubectl create ns testing
 ```
 
-After you've created the namespace, you can create the `Instance`. This repository has a 
-`redis-instance.yaml` file in the `resources/` directory that represents an `Instance` to provision
-a Redis server via [Azure's Redis Cache service](https://azure.microsoft.com/en-us/services/cache/).
+After you've created the namespace, you can create the `Instance` for the service that you'd
+like to provision. This repository provides the following manifests for `Instance`s:
 
-To provision, create an `Instance` with this command:
+- `resources/redis-instance.yaml`
+- `resources/postgres-instance.yaml`
+
+To provision a Redis instance, for example, run this command:
 
 ```console
 kubectl --context=service-catalog create -f resources/redis-instance.yaml
 ```
 
-Next, view the newly created `Instance` with this command:
+Next, view the newly created Redis `Instance` with this command:
 
 ```console
 kubectl get instance --context=service-catalog -o yaml -n testing my-redis
 ```
 
 A large amount of YAML will be output, but the important bits are under the
-`status.conditions[0]` field (near the bottom). Since the Azure redis service takes a few minutes
-to create new caches, the Azure broker provisions them asynchronously. As a result, you'll see
-the following under the first condition:
+`status.conditions[0]` field (near the bottom).
+
+Since the Azure redis service takes a few minutes to create new caches, the Azure broker provisions
+ them asynchronously. As a result, you'll see the following under the first condition:
 
 ```yaml
 message: The instance is being provisioned asynchronously
@@ -206,16 +217,20 @@ type: Ready
 Wait until the `reason` field reads `ProvisionedSuccessfully` and the `status` field
 reads `"True"` before moving on to the next step.
 
+You should see similar behavior for Azure Postgres.
+
 # Bind to the new Instance
 
 Our last step is to bind to the instance. In doing so, service-catalog will get back some
-credentials that it will write into a `Secret`. All we have to do is run the following command:
+credentials that it will write into a `Secret`.
+
+Since we provisioned Redis in the previous section, we'll bind to it with this command:
 
 ```console
 kubectl --context=service-catalog create -f resources/redis-binding.yaml
 ```
 
-This command will create a `Secret` called `my-redis-creds` in the same (`my-redis`) namespace.
+This command will create a `Secret` called `my-redis-creds` in the same namespace as the `Binding`.
 To see it, run this command:
 
 ```console
