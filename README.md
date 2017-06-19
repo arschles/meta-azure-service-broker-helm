@@ -219,7 +219,7 @@ This command will create a `Secret` called `my-redis-creds` in the same (`my-red
 To see it, run this command:
 
 ```console
-kubectl get secret -n my-redis
+kubectl get secret -n testing
 ```
 
 After this secret is created, our application can use its contents to access its newly provisioned
