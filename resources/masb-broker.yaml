@@ -4,7 +4,8 @@ metadata:
   name: masb
 spec:
   url: http://masb-meta-azure-service-broker.masb.svc.cluster.local
-  authSecret:
-    kind: Secret
-    namespace: masb
-    name: masb-meta-azure-service-broker-auth
+  authInfo:
+    basicAuthSecret:
+      kind: Secret
+      namespace: masb
+      name: masb-meta-azure-service-broker-auth
