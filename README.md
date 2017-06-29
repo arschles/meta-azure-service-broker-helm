@@ -10,7 +10,7 @@ to provision and bind to [Azure Redis](https://azure.microsoft.com/en-us/service
 and [Azure Postgres](https://azure.microsoft.com/en-us/services/postgresql/) services.
 
 Note that the instructions herein don't necessarily reflect a production-quality installation, but
-they should get you started down that path.
+they should get you started down that path. They also assume you are using a Kubernetes cluster in a cloud. They have been tested with [Azure Container Service](https://azure.microsoft.com/en-us/services/container-service/).
 
 # Prereqs
 
