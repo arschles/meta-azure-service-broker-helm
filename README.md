@@ -1,5 +1,7 @@
 # meta-azure-service-broker-helm
 
+__NOTICE: the instructions herein related to service-catalog are out of date and DEPRECATED. For updated instructions, please see the [service-catalog install documentation](https://github.com/kubernetes-incubator/service-catalog/blob/master/docs/install-1.7.md) and the [service-catalog walkthrough documentation](https://github.com/kubernetes-incubator/service-catalog/blob/master/docs/walkthrough-1.7.md)__
+
 This repository contains charts and instructions for a demo of 
 [service-catalog](https://github.com/kubernetes-incubator/service-catalog)
 with the 
