@@ -8,11 +8,11 @@ with the
 [Azure Meta Service Broker](https://github.com/Azure/meta-azure-service-broker).
 
 It currently shows how to install and set up Service Catalog and the Azure broker, and how
-to provision and bind to [Azure Redis](https://azure.microsoft.com/en-us/services/cache/)
-and [Azure Postgres](https://azure.microsoft.com/en-us/services/postgresql/) services.
+to provision and bind to [Azure Redis](https://azure.microsoft.com/services/cache/?WT.mc_id=opensource-0000-aaschles)
+and [Azure Postgres](https://azure.microsoft.com/services/postgresql/?WT.mc_id=opensource-0000-aaschles) services.
 
 Note that the instructions herein don't necessarily reflect a production-quality installation, but
-they should get you started down that path. They also assume you are using a Kubernetes cluster in a cloud. They have been tested with [Azure Container Service](https://azure.microsoft.com/en-us/services/container-service/).
+they should get you started down that path. They also assume you are using a Kubernetes cluster in a cloud. They have been tested with [Azure Container Service](https://azure.microsoft.com/services/container-service/?WT.mc_id=opensource-0000-aaschles).
 
 # Prereqs
 
